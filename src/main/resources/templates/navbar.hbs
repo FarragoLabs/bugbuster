@@ -1,4 +1,6 @@
-<nav> bug buster
-    <button onclick="window.location.href='/'">home</button>
+    <button onclick="window.location.href='/'">Bug buster</button>
+    <button onclick="window.location.href='/v1/app'">All apps</button>
+    {{#if appname}}
+        <button onclick="window.location.href='/v1/app/{{appname}}'">All bugs of this app</button>
+    {{/if}}
     <button onclick="window.location.href='/logout'">logout</button>
-</nav>

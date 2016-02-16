@@ -64,6 +64,7 @@ public class ReadOnlyMode implements Mode {
             params.put("comments", commmetz);
         }
         params.put("content", bug1);
+        params.put("appname",request.params("bugid").split("-")[0]);
         params.put("path",file1.getAbsolutePath());
 
         HandlebarsTemplateEngine handlebarsTemplateEngine = new HandlebarsTemplateEngine();

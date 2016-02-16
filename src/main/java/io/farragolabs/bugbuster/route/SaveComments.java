@@ -30,8 +30,6 @@ public class SaveComments implements Route {
 
             String comment = URLDecoder.decode(request.queryParams("comment"),"UTF-8");
 
-            System.out.println(comment);
-
             if(!comment.isEmpty())
             {
                 comments.put(comment);
