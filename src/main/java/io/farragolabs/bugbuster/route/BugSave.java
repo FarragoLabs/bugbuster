@@ -51,6 +51,7 @@ public class BugSave implements Route {
             response.redirect("/v1/bug/" + split[split.length - 1] + "-" + file.getName().replaceAll(".json", ""));
         } catch (IOException | JSONException e) {
             e.printStackTrace();
+            return "404";
         }
 
         return null;

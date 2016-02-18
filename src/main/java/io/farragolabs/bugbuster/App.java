@@ -2,14 +2,19 @@ package io.farragolabs.bugbuster;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Collections2;
+import com.google.common.collect.HashBiMap;
 import com.google.common.collect.Lists;
+import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 import spark.Route;
+import spark.template.handlebars.HandlebarsTemplateEngine;
 
 import java.io.File;
 import java.net.URLDecoder;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class App implements Route {
     public Object handle(Request request, Response response) {
@@ -31,11 +36,10 @@ public class App implements Route {
             body = body + "<a href=\"/v1/bug/" + collection + "\">" + collection + "</a><br />";
         }
 
-        return PageUtils.HEADER +
-                "<section>" +
-                "  <a href='/v1/create-issue/" + appname + "'>Create issue<a/>" +
-                " <hr />"
-                + body
-                + "</section>";
+        HandlebarsTemplateEngine handlebarsTemplateEngine = new HandlebarsTemplateEngine();
+        Map<String,String> parameters = new HashMap<>();
+        parameters.put("appname",appname);
+        parameters.put("content",body);
+        return handlebarsTemplateEngine.render(new ModelAndView(parameters,"buglist.hbs"));
     }
 }

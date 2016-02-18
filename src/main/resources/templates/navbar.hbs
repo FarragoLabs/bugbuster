@@ -1,6 +1,10 @@
-    <button onclick="window.location.href='/'">Bug buster</button>
-    <button onclick="window.location.href='/v1/app'">All apps</button>
-    {{#if appname}}
-        <button onclick="window.location.href='/v1/app/{{appname}}'">All bugs of this app</button>
-    {{/if}}
-    <button onclick="window.location.href='/logout'">logout</button>
+<nav>
+    <ul>
+        <li><a href='/'>Home</a></li>
+        <li><a href='/v1/app'>All apps</li>
+        {{#if appname}}
+            <li>  <a href='/v1/app/{{appname}}'>All bugs of this app</a></li>
+        {{/if}}
+        <li><a href='/logout'>logout</a></li>
+    </ul>
+</nav>

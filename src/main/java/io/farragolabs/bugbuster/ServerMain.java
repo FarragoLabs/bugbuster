@@ -1,6 +1,9 @@
 package io.farragolabs.bugbuster;
 
 import io.farragolabs.bugbuster.route.*;
+import spark.ExceptionHandler;
+import spark.Request;
+import spark.Response;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
@@ -40,6 +43,13 @@ public class ServerMain {
 
         Spark.before("/v1", new AuthenticationFilter());
         Spark.before("/v1/*", new AuthenticationFilter());
+
+        Spark.exception(Exception.class, new ExceptionHandler() {
+            @Override
+            public void handle(Exception exception, Request request, Response response) {
+                response.body(PageUtils.HEADER+"<h1>404 Error</h1>");
+            }
+        });
     }
 
     private static void setup() {

@@ -9,6 +9,7 @@ import spark.Response;
 import spark.Route;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class AppList implements Route {
 
     public Object handle(Request request, Response response) {
         List<String> apps = Lists.newArrayList(BugListConfigurationModel.BUG_BUSTER_DIR.list());
+        Collections.sort(apps);
         HashMap<String, Object> appList = Maps.newHashMap();
         appList.put("applist", apps);
         appList.put("home", "/");
